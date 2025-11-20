@@ -101,6 +101,6 @@ my_scatterplot <- ggplot(nba_pm_df, aes(x = personal_fouls, y = steal_foul_ratio
   coord_cartesian(clip = "off")
 
 # --- 11. Optional: save scatterplot as PNG ---
-png("scatterplot_output.png", width = 800, height = 600)
+png("output/scatterplot_output.png", width = 800, height = 600)
 print(my_scatterplot)
 dev.off()

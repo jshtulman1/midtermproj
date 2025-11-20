@@ -44,7 +44,7 @@ avg_by_pos <- df_clean %>%
   )
 
 # Plot
-ggplot(avg_by_pos, aes(x = Pos, y = points_per_36, fill = shot_type)) +
+bargraph <- ggplot(avg_by_pos, aes(x = Pos, y = points_per_36, fill = shot_type)) +
   geom_col(position = "dodge") +
   labs(
     title = "Average Points per 36 Minutes by Position and Shot Type",
@@ -56,3 +56,9 @@ ggplot(avg_by_pos, aes(x = Pos, y = points_per_36, fill = shot_type)) +
   scale_y_continuous(expand = c(0,0)) + 
   theme_light()
 
+saveRDS(
+  bargraph,
+  file = 
+    here::here("output/bargraph.rds"))
+
+bargraph

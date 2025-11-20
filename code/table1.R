@@ -6,7 +6,7 @@ here::i_am(
   "code/table1.R"
 )
 
-data <- read.csv(here::here("code/NBA_2025_per_minute_clean.csv"), sep = ",")
+data <- read.csv(here::here("data/NBA_2025_per_minute_clean.csv"), sep = ",")
 
 # filter out missing or empty positions
 data <- data %>%
@@ -59,11 +59,11 @@ top_players <- data %>%
   select(player, position, team, points, field_goal_pct, 
          assists, total_rebounds, minutes_per_game)
 
-# top 10 players by position
+# top players by position
 top_players_by_position <- data %>%
   group_by(position) %>%
   arrange(desc(points), .by_group = TRUE) %>%
-  slice_head(n = 10) %>%
+  slice_head(n = 1) %>%
   ungroup() %>%
   select(player, position, team, points, field_goal_pct, 
          assists, total_rebounds, steals, blocks, minutes_per_game) %>%
@@ -79,15 +79,4 @@ output <- list(
 
 # save
 saveRDS(output, "output/table1.rds")
-
-# tables made:
-
-# position averages - league stats by position
-# top 10 overall - best 10 players across all positions
-# top 10 by position - best 10 for each position, organized by:
-# C (Centers)
-# PF (Power Forwards)
-# PG (Point Guards)
-# SF (Small Forwards)
-# SG (Shooting Guards)
 

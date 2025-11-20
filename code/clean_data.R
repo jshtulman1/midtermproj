@@ -5,7 +5,7 @@ library(janitor)
 library(rvest)
 
 # Create folder if it doesn't exist
-if(!dir.exists("code")) dir.create("code")
+if(!dir.exists("data")) dir.create("data")
 
 # Set global chunk options
 knitr::opts_chunk$set(
@@ -18,12 +18,12 @@ knitr::opts_chunk$set(
 #URL for NBA 2025 per-minute stats
 url <- "https://www.basketball-reference.com/leagues/NBA_2025_per_minute.html"
 #Download raw HTML only if it doesn't already exist
-if (!file.exists("code/NBA_2025_per_minute_raw.html")) {
-  download.file(url, destfile = "code/NBA_2025_per_minute_raw.html", mode = "wb")
+if (!file.exists("data/NBA_2025_per_minute_raw.html")) {
+  download.file(url, destfile = "data/NBA_2025_per_minute_raw.html", mode = "wb")
 }
 
 #Read HTML
-html_file <- "code/NBA_2025_per_minute_raw.html"
+html_file <- "data/NBA_2025_per_minute_raw.html"
 page <- read_html(html_file)
 table_node <- html_node(page, "table#per_minute_stats")
 nba_pm_df <- html_table(table_node, fill = TRUE)
@@ -60,4 +60,4 @@ print(head(nba_pm_df$position))
 str(nba_pm_df)
 
 #Save cleaned CSV without printing "writing" message
-invisible(write.csv(nba_pm_df, "code/NBA_2025_per_minute_clean.csv", row.names = FALSE))
+invisible(write.csv(nba_pm_df, "data/NBA_2025_per_minute_clean.csv", row.names = FALSE))

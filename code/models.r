@@ -5,6 +5,8 @@ library(rvest)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(gtsummary)
+
 url <- "https://www.basketball-reference.com/leagues/NBA_2026_per_minute.html"
 page <- read_html(url)
 tables <- page %>% html_nodes("table")

@@ -1,1 +1,78 @@
 ---
+title: "Offensive & Defensive Dynamics in Basketball: A Midterm Report"
+author: "Mia Sumera, Monica Rivera, Jacob Shtulman, Averrie Coleman, Cassandra Ortiz Nelsen"
+date: "`r Sys.Date()`"
+output: html_document
+params:
+  production: false
+---
+
+```{r, package loading, include=!params$production}
+library(here)
+library(knitr)
+library(dplyr)
+library(haven)
+library(openxlsx)
+library(gtsummary)
+```
+
+```{r, setting up global parameters, echo = FALSE, eval = params$production}
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+```{r, setting root dir, include=!params$production}
+here::i_am("report.Rmd")
+```
+
+## Introduction
+Insert text for introduction
+
+## Methods
+Insert text to describe methods
+
+## Analysis
+
+### Descriptive Statistics
+#### Table 1. Player Summary: Position Averages and Top Performers
+
+```{r, tableone}
+
+table1 <- readRDS(here::here("output", "table1.RDS"))
+knitr::kable(table1$position_averages, caption = "Table 1a. Position Averages")
+knitr::kable(table1$top_players, caption = "Table 1b. Top 10 Scoring Players")
+knitr::kable(table1$top_players_by_position, caption = "Table 1c. Top Scoring Players by Position")
+
+```
+
+### Effect of Age on Scoring
+#### Table 2. Linear Regression of Points on Age
+
+```{r, regression}
+
+regression_table <- readRDS(here::here("output", "primary_regression_table.rds"))
+regression_table
+```
+### Defensive Performance: Steal-to-Foul Ratio
+#### Figure 1. Scatterplot of Player Steal-to-Foul Ratios
+```{r, scatterplot}
+
+knitr::include_graphics(
+  here::here("output", "scatterplot_output.png")
+)
+```
+
+### Positional and Shot-Type Differences in Scoring Rates
+#### Figure 2. Points per 36 Minutes Stratified by Player Position and Shot Type
+```{r, bargraph}
+
+bargraph <- readRDS(here::here("output", "bargraph.rds"))
+bargraph
+
+```
+
+### Conclusion
+Insert conclusion and discussion
+
+
